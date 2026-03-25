@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NikhStudios — Digital Creative Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Noise grain -->
+  <div class="grain"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- Liquid metal canvas background -->
+  <canvas id="metalCanvas"></canvas>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">
+      <span class="logo-bracket">[</span>NS<span class="logo-bracket">]</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#work" class="nav-link" data-text="Work">Work</a>
+      <a href="#about" class="nav-link" data-text="About">About</a>
+      <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+      <a href="#contact" class="nav-cta">Get in touch ↗</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+
+    <!-- Floating liquid metal blobs (SVG) -->
+    <div class="liquid-scene">
+      <svg class="liquid-svg" id="liquidSvg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="liquid-filter" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -8" result="goo"/>
+            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+          </filter>
+          <radialGradient id="blob-grad-1" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#e8e8e8" stop-opacity="0.9"/>
+            <stop offset="40%" stop-color="#8a8a9a" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#2a2a3a" stop-opacity="0.3"/>
+          </radialGradient>
+          <radialGradient id="blob-grad-2" cx="35%" cy="30%">
+            <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.85"/>
+            <stop offset="50%" stop-color="#0077aa" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#001133" stop-opacity="0.2"/>
+          </radialGradient>
+          <radialGradient id="blob-grad-3" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.75"/>
+            <stop offset="50%" stop-color="#cc3300" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#110500" stop-opacity="0.1"/>
+          </radialGradient>
+          <radialGradient id="blob-grad-4" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#c8c8e8" stop-opacity="0.85"/>
+            <stop offset="60%" stop-color="#606080" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#101020" stop-opacity="0.2"/>
+          </radialGradient>
+          <filter id="glow-cyan">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#liquid-filter)">
+          <!-- Main silver blob -->
+          <ellipse id="blob1" cx="400" cy="300" rx="130" ry="110"
+            fill="url(#blob-grad-1)" class="blob"/>
+          <!-- Cyan accent blob -->
+          <ellipse id="blob2" cx="520" cy="220" rx="72" ry="65"
+            fill="url(#blob-grad-2)" class="blob"/>
+          <!-- Orange ember blob -->
+          <ellipse id="blob3" cx="290" cy="390" rx="55" ry="50"
+            fill="url(#blob-grad-3)" class="blob"/>
+          <!-- Small satellite -->
+          <ellipse id="blob4" cx="460" cy="370" rx="42" ry="38"
+            fill="url(#blob-grad-4)" class="blob"/>
+          <!-- Tiny cyan spark -->
+          <circle id="blob5" cx="320" cy="230" r="26"
+            fill="url(#blob-grad-2)" class="blob" opacity="0.7"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge" data-anim="fadeUp" data-delay="0">
+        <span class="badge-dot"></span>
+        <span>Est. 2024 · Creative Tech Studio</span>
+      </div>
+      <h1 class="hero-title" data-anim="fadeUp" data-delay="120">
+        <span class="title-line">Nikh</span><br/>
+        <span class="title-line title-accent">Studios</span>
+      </h1>
+      <p class="hero-sub" data-anim="fadeUp" data-delay="260">
+        Digital creations across <em>code</em>, <em>sound</em>, and <em>design</em>
+      </p>
+      <div class="hero-actions" data-anim="fadeUp" data-delay="380">
+        <a href="#work" class="btn-primary">
+          <span>View Work</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#about" class="btn-ghost">About the studio</a>
+      </div>
+
+      <!-- Floating tech tags -->
+      <div class="tech-tags" data-anim="fadeUp" data-delay="500">
+        <span class="tag">WebGL</span>
+        <span class="tag">Motion</span>
+        <span class="tag">Audio</span>
+        <span class="tag">Generative</span>
+        <span class="tag">UI/UX</span>
+      </div>
+    </div>
+
+    <!-- Corner data readouts -->
+    <div class="data-readout readout-tl">
+      <span class="readout-label">SYS</span>
+      <span class="readout-val" id="sysTime">00:00:00</span>
+    </div>
+    <div class="data-readout readout-tr">
+      <span class="readout-label">LAT</span>
+      <span class="readout-val">5.8520° N</span>
+    </div>
+    <div class="data-readout readout-br">
+      <span class="readout-label">BUILD</span>
+      <span class="readout-val">v2.4.1</span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Code</span><span class="sep">✦</span>
+      <span>Audio Design</span><span class="sep">✦</span>
+      <span>Visual Motion</span><span class="sep">✦</span>
+      <span>UI/UX</span><span class="sep">✦</span>
+      <span>Generative Art</span><span class="sep">✦</span>
+      <span>WebGL</span><span class="sep">✦</span>
+      <span>Creative Tech</span><span class="sep">✦</span>
+      <span>Code</span><span class="sep">✦</span>
+      <span>Audio Design</span><span class="sep">✦</span>
+      <span>Visual Motion</span><span class="sep">✦</span>
+      <span>UI/UX</span><span class="sep">✦</span>
+      <span>Generative Art</span><span class="sep">✦</span>
+      <span>WebGL</span><span class="sep">✦</span>
+      <span>Creative Tech</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <section class="work-section" id="work">
+    <div class="section-header" data-anim="fadeUp">
+      <span class="section-eyebrow">// 01 — Featured Work</span>
+      <h2 class="section-title">Selected <br/><em>Projects</em></h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Card 1: DevTrack — wide -->
+      <article class="project-card card-wide" data-anim="cardIn" data-delay="0">
+        <div class="card-glow glow-cyan"></div>
+        <div class="card-preview preview-code">
+          <div class="code-window">
+            <div class="code-titlebar">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="code-filename">devtrack.config.ts</span>
+            </div>
+            <pre class="code-body"><span class="c-kw">import</span> <span class="c-obj">{ DevTrack }</span> <span class="c-kw">from</span> <span class="c-str">'@nikhstudios/core'</span>
+
+<span class="c-kw">const</span> <span class="c-var">tracker</span> = <span class="c-kw">new</span> <span class="c-fn">DevTrack</span>({
+  workspace<span class="c-p">:</span> <span class="c-str">"studio-alpha"</span><span class="c-p">,</span>
+  sync<span class="c-p">:</span> <span class="c-cyan">true</span><span class="c-p">,</span>
+  metrics<span class="c-p">:</span> [<span class="c-str">"velocity"</span><span class="c-p">,</span> <span class="c-str">"coverage"</span>]<span class="c-p">,</span>
+  alerts<span class="c-p">:</span> { threshold<span class="c-p">:</span> <span class="c-orange">0.85</span> }
+})</pre>
+          </div>
+          <div class="preview-badge cyan">Live</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">01</span>
+            <span class="card-cat cat-code">Code</span>
+          </div>
+          <h3 class="card-title">DevTrack</h3>
+          <p class="card-desc">Developer workspace platform for sprint tracking, build metrics, and real-time velocity analytics.</p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span>TypeScript</span><span>Next.js</span><span>Postgres</span>
+            </div>
+            <a href="#" class="card-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Pulse -->
+      <article class="project-card" data-anim="cardIn" data-delay="80">
+        <div class="card-glow glow-orange"></div>
+        <div class="card-preview preview-audio">
+          <div class="waveform">
+            <div class="wave-bars" id="waveBars"></div>
+          </div>
+          <div class="preview-badge orange">Audio</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">02</span>
+            <span class="card-cat cat-audio">Audio</span>
+          </div>
+          <h3 class="card-title">Pulse</h3>
+          <p class="card-desc">45-second ambient experiment — sub-bass textures with synthetic breathing.</p>
+          <div class="card-footer">
+            <div class="card-tags"><span>Ableton</span><span>Max/MSP</span></div>
+            <a href="#" class="card-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Neon Drift -->
+      <article class="project-card" data-anim="cardIn" data-delay="160">
+        <div class="card-glow glow-cyan"></div>
+        <div class="card-preview preview-visual">
+          <div class="scanlines"></div>
+          <div class="visual-frame">
+            <div class="vf-grid"></div>
+            <div class="vf-orb"></div>
+            <div class="vf-streak s1"></div>
+            <div class="vf-streak s2"></div>
+          </div>
+          <div class="preview-badge cyan">Visual</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">03</span>
+            <span class="card-cat cat-visual">Visual</span>
+          </div>
+          <h3 class="card-title">Neon Drift</h3>
+          <p class="card-desc">Cinematic edit in deep blues and electric orange — built from motion stock.</p>
+          <div class="card-footer">
+            <div class="card-tags"><span>Premiere</span><span>After Effects</span></div>
+            <a href="#" class="card-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Obsidian -->
+      <article class="project-card" data-anim="cardIn" data-delay="240">
+        <div class="card-glow glow-silver"></div>
+        <div class="card-preview preview-design">
+          <div class="design-poster">
+            <div class="poster-text">OBS</div>
+            <div class="poster-sub">IDIAN</div>
+            <div class="poster-line"></div>
+          </div>
+          <div class="preview-badge silver">Design</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">04</span>
+            <span class="card-cat cat-design">Design</span>
+          </div>
+          <h3 class="card-title">Obsidian</h3>
+          <p class="card-desc">Minimal black/silver poster series — weight, space, typographic restraint.</p>
+          <div class="card-footer">
+            <div class="card-tags"><span>Figma</span><span>Print</span></div>
+            <a href="#" class="card-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5: Glass UI — wide -->
+      <article class="project-card card-wide" data-anim="cardIn" data-delay="320">
+        <div class="card-glow glow-cyan"></div>
+        <div class="card-preview preview-ui">
+          <div class="ui-mockup">
+            <div class="ui-panel p1">
+              <div class="ui-line w70"></div>
+              <div class="ui-line w40"></div>
+              <div class="ui-chip cyan">Active</div>
+            </div>
+            <div class="ui-panel p2">
+              <div class="ui-metric"><span class="metric-val">98.4</span><span class="metric-u">%</span></div>
+              <div class="ui-line w60"></div>
+            </div>
+            <div class="ui-panel p3">
+              <div class="ui-sparkline" id="sparkline"></div>
+            </div>
+          </div>
+          <div class="preview-badge cyan">Experimental</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">05</span>
+            <span class="card-cat cat-exp">Experimental</span>
+          </div>
+          <h3 class="card-title">Glass UI</h3>
+          <p class="card-desc">Interface concept exploring translucency, depth, and light across layered dashboard components.</p>
+          <div class="card-footer">
+            <div class="card-tags"><span>React</span><span>Framer Motion</span><span>CSS</span></div>
+            <a href="#" class="card-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip" data-anim="fadeUp">
+    <div class="stat-item">
+      <span class="stat-n" data-count="12">0</span>
+      <span class="stat-l">Projects</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <span class="stat-n" data-count="4">0</span>
+      <span class="stat-l">Disciplines</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <span class="stat-n" data-count="100">0</span><span class="stat-n">K+</span>
+      <span class="stat-l">Lines of Code</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <span class="stat-n">∞</span>
+      <span class="stat-l">Ideas Running</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-liquid">
+      <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="about-svg">
+        <defs>
+          <filter id="liq2" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo"/>
+            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+          </filter>
+          <radialGradient id="ab1" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#001122" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="ab2" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#c8c8e8" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#0a0a12" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="ab3" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#110500" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g filter="url(#liq2)">
+          <circle class="ab-blob" id="ab1" cx="250" cy="200" r="100" fill="url(#ab2)"/>
+          <circle class="ab-blob" id="ab2c" cx="310" cy="160" r="60" fill="url(#ab1)"/>
+          <circle class="ab-blob" id="ab3c" cx="190" cy="250" r="45" fill="url(#ab3)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="about-content">
+      <span class="section-eyebrow" data-anim="fadeUp">// 02 — Studio</span>
+      <h2 class="about-title" data-anim="fadeUp" data-delay="80">
+        Built at the edge of <em>software</em> and <em>sensation</em>
+      </h2>
+      <p class="about-body" data-anim="fadeUp" data-delay="160">
+        NikhStudios is a creative space exploring the intersection of software, media, and design — through minimal and immersive digital experiences that push the boundary between technology and art.
+      </p>
+      <div class="discipline-list" data-anim="fadeUp" data-delay="240">
+        <div class="disc-item">
+          <span class="disc-icon cyan">⬡</span>
+          <span>Creative Engineering</span>
+        </div>
+        <div class="disc-item">
+          <span class="disc-icon orange">⬡</span>
+          <span>Audio & Sound Design</span>
+        </div>
+        <div class="disc-item">
+          <span class="disc-icon silver">⬡</span>
+          <span>Motion & Visual</span>
+        </div>
+        <div class="disc-item">
+          <span class="disc-icon cyan">⬡</span>
+          <span>Interface Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner" data-anim="fadeUp">
+      <span class="section-eyebrow">// 03 — Contact</span>
+      <h2 class="contact-title">Let's build <em>something</em><br/>extraordinary.</h2>
+      <a href="mailto:hello@nikhstudios.com" class="contact-email">
+        hello@nikhstudios.com
+        <span class="email-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">[NS]</span>
+      <span class="footer-copy">© 2024 NikhStudios</span>
+      <div class="footer-links">
+        <a href="#">Twitter</a>
+        <a href="#">GitHub</a>
+        <a href="#">Behance</a>
+        <a href="#">Dribbble</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
